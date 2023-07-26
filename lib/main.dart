@@ -19,7 +19,10 @@ class InitPage extends StatefulWidget {
 }
 
 class _InitPageState extends State<InitPage> {
-  double sliderValue = 0;
+  double sliderRedValue = 0;
+  double sliderGreenValue = 0;
+  double sliderBlueValue = 0;
+  double transpareciaColor = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -29,24 +32,77 @@ class _InitPageState extends State<InitPage> {
         centerTitle: true,
       ),
       body: Column(children: [
+        SizedBox(
+          height: 8.0,
+        ),
         Text(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
           style: TextStyle(
             fontSize: 14.0,
             fontWeight: FontWeight.w600,
             height: 1.3,
-            color: Colors.red,
+            color: Color.fromRGBO(
+                sliderRedValue.toInt(),
+                sliderGreenValue.toInt(),
+                sliderBlueValue.toInt(),
+                transpareciaColor),
           ),
         ),
         Slider(
-          value: sliderValue,
+          value: sliderRedValue,
           min: 0,
-          max: 300,
+          max: 255,
+          activeColor: Colors.red,
+          inactiveColor: Colors.black12,
+          thumbColor: Colors.red,
           onChanged: (double pepito) {
-            sliderValue = pepito;
-            print(pepito);
+            sliderRedValue = pepito;
+
             setState(() {});
           },
+        ),
+        Slider(
+          value: sliderGreenValue,
+          min: 0,
+          max: 255,
+          activeColor: Colors.green,
+          inactiveColor: Colors.black12,
+          thumbColor: Colors.green,
+          onChanged: (double pepito) {
+            sliderGreenValue = pepito;
+
+            setState(() {});
+          },
+        ),
+        Slider(
+          value: sliderBlueValue,
+          min: 0,
+          max: 255,
+          activeColor: Colors.blue,
+          inactiveColor: Colors.black12,
+          thumbColor: Colors.blue,
+          onChanged: (double pepito) {
+            sliderBlueValue = pepito;
+
+            setState(() {});
+          },
+        ),
+        Slider(
+          value: transpareciaColor,
+          min: 0,
+          max: 1,
+          activeColor: Colors.black12,
+          inactiveColor: Colors.black54,
+          thumbColor: Colors.black26,
+          onChanged: (double pepito) {
+            transpareciaColor = pepito;
+            print(pepito);
+
+            setState(() {});
+          },
+        ),
+        Text(
+          "Este es la Transparencia.",
         ),
       ]),
     );
