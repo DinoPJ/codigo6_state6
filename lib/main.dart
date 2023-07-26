@@ -25,7 +25,7 @@ class _InitPageState extends State<InitPage> {
   double transpareciaColor = 0;
 
   bool valueCheckBox = false;
-  bool valueCheckBox2 = false;
+  bool isUnderline = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +42,17 @@ class _InitPageState extends State<InitPage> {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
           style: TextStyle(
             fontSize: 14.0,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
             height: 1.3,
             color: Color.fromRGBO(
                 sliderRedValue.toInt(),
                 sliderGreenValue.toInt(),
                 sliderBlueValue.toInt(),
                 transpareciaColor),
+            decoration:
+                isUnderline ? TextDecoration.lineThrough : TextDecoration.none,
           ),
+          textAlign: valueCheckBox ? TextAlign.justify : TextAlign.left,
         ),
         Slider(
           value: sliderRedValue,
@@ -109,11 +112,20 @@ class _InitPageState extends State<InitPage> {
         ),
         CheckboxListTile(
             value: valueCheckBox,
-            title: Text("Hola Mundo"),
-            subtitle: Text("Este es el SubTitulo"),
+            title: Text("Justificado"),
+            subtitle: Text("Alineacion"),
             onChanged: (bool? mandarina) {
               print(mandarina);
               valueCheckBox = mandarina!;
+              setState(() {});
+            }),
+        CheckboxListTile(
+            value: isUnderline,
+            title: Text("Underline"),
+            subtitle: Text("Decoration"),
+            onChanged: (bool? mandarina) {
+              print(mandarina);
+              isUnderline = mandarina!;
               setState(() {});
             }),
       ]),
