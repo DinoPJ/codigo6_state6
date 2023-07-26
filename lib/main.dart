@@ -24,6 +24,9 @@ class _InitPageState extends State<InitPage> {
   double sliderBlueValue = 0;
   double transpareciaColor = 0;
 
+  bool valueCheckBox = false;
+  bool valueCheckBox2 = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,6 +107,15 @@ class _InitPageState extends State<InitPage> {
         Text(
           "Este es la Transparencia.",
         ),
+        CheckboxListTile(
+            value: valueCheckBox,
+            title: Text("Hola Mundo"),
+            subtitle: Text("Este es el SubTitulo"),
+            onChanged: (bool? mandarina) {
+              print(mandarina);
+              valueCheckBox = mandarina!;
+              setState(() {});
+            }),
       ]),
     );
   }
