@@ -19,10 +19,12 @@ class InitPage extends StatefulWidget {
 }
 
 class _InitPageState extends State<InitPage> {
+  double sliderTamanoTexto = 0;
+  int tamanoDeTexto = 0;
   double sliderRedValue = 0;
   double sliderGreenValue = 0;
   double sliderBlueValue = 0;
-  double transpareciaColor = 0;
+  double transpareciaColor = 1;
 
   bool valueCheckBox = false;
   bool isUnderline = false;
@@ -41,7 +43,7 @@ class _InitPageState extends State<InitPage> {
         Text(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
           style: TextStyle(
-            fontSize: 14.0,
+            fontSize: sliderTamanoTexto > 1 ? tamanoDeTexto.toDouble() : 14,
             fontWeight: FontWeight.w500,
             height: 1.3,
             color: Color.fromRGBO(
@@ -53,6 +55,26 @@ class _InitPageState extends State<InitPage> {
                 isUnderline ? TextDecoration.lineThrough : TextDecoration.none,
           ),
           textAlign: valueCheckBox ? TextAlign.justify : TextAlign.left,
+        ),
+        Text(
+          sliderTamanoTexto > 0.1
+              ? "El Tamaño del Texto es de $tamanoDeTexto"
+              : "El Tamaño del Texto es de 14",
+        ),
+        Slider(
+          value: sliderTamanoTexto,
+          min: 0,
+          max: 18,
+          activeColor: Colors.black38,
+          inactiveColor: Colors.black12,
+          thumbColor: Colors.black,
+          onChanged: (double pepito) {
+            sliderTamanoTexto = pepito;
+            tamanoDeTexto = pepito.toInt();
+            print(sliderTamanoTexto);
+
+            setState(() {});
+          },
         ),
         Slider(
           value: sliderRedValue,
